@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9B484A441D92CFDC0051E037 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B484A431D92CFDC0051E037 /* AppDelegate.swift */; };
-		9B484A461D92CFDC0051E037 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9B484A451D92CFDC0051E037 /* GameScene.sks */; };
-		9B484A481D92CFDC0051E037 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9B484A471D92CFDC0051E037 /* Actions.sks */; };
 		9B484A4A1D92CFDC0051E037 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B484A491D92CFDC0051E037 /* GameScene.swift */; };
 		9B484A4C1D92CFDC0051E037 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B484A4B1D92CFDC0051E037 /* GameViewController.swift */; };
 		9B484A4F1D92CFDC0051E037 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B484A4D1D92CFDC0051E037 /* Main.storyboard */; };
@@ -20,8 +18,6 @@
 /* Begin PBXFileReference section */
 		9B484A401D92CFDC0051E037 /* What's New in SpriteKit on iOS 10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What's New in SpriteKit on iOS 10.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B484A431D92CFDC0051E037 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9B484A451D92CFDC0051E037 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		9B484A471D92CFDC0051E037 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		9B484A491D92CFDC0051E037 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		9B484A4B1D92CFDC0051E037 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		9B484A4E1D92CFDC0051E037 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -61,8 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				9B484A431D92CFDC0051E037 /* AppDelegate.swift */,
-				9B484A451D92CFDC0051E037 /* GameScene.sks */,
-				9B484A471D92CFDC0051E037 /* Actions.sks */,
 				9B484A491D92CFDC0051E037 /* GameScene.swift */,
 				9B484A4B1D92CFDC0051E037 /* GameViewController.swift */,
 				9B484A4D1D92CFDC0051E037 /* Main.storyboard */,
@@ -133,10 +127,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B484A4F1D92CFDC0051E037 /* Main.storyboard in Resources */,
-				9B484A461D92CFDC0051E037 /* GameScene.sks in Resources */,
 				9B484A511D92CFDD0051E037 /* Assets.xcassets in Resources */,
 				9B484A541D92CFDD0051E037 /* LaunchScreen.storyboard in Resources */,
-				9B484A481D92CFDC0051E037 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
