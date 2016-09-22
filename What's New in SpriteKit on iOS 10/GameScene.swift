@@ -68,8 +68,8 @@ class GameScene: SKScene {
         let loadDef = SKTileDefinition(texture: loadTexture)
         let loadGroup = SKTileGroup(tileDefinition: loadDef)
         
-        let wallTexture = SKTexture(image: createImage(color: UIColor.brown))
-        let wallDef = SKTileDefinition(texture: wallTexture)
+        let wallTexture = noiseTexture()
+        let wallDef = SKTileDefinition(texture: wallTexture, size: loadDef.size)
         let wallGroup = SKTileGroup(tileDefinition: wallDef)
         
         let tileSet = SKTileSet(tileGroups: [loadGroup, wallGroup])
@@ -111,6 +111,12 @@ class GameScene: SKScene {
         let warp = SKAction.animate(withWarps:[warpGrid, noWarpGrid], times: [0.2, 0.4])
         
         return warp!
+    }
+    
+    private func noiseTexture() -> SKTexture {
+        let noise = GKNoise(GKPerlinNoiseSource())
+        let noiseMap = GKNoiseMap(noise)
+        return SKTexture(noiseMap: noiseMap)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
