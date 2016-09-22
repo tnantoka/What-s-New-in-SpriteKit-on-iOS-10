@@ -12,31 +12,35 @@ import GameplayKit
 class GameScene: SKScene {
     
     var mapNode: SKTileMapNode!
-    var playerNode: SKShapeNode!
+    var playerNode: SKSpriteNode!
     var column = 0
     var row = 0
     
     override func didMove(to view: SKView) {
         
         // Get label node from scene and store it for use later
-        createMapExample()
+        createMap()
     }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
     }
     
-    private func createImage(color: UIColor) -> UIImage {
+    private func createImage(color: UIColor, circle: Bool = false) -> UIImage {
         let size = CGSize(width: 32.0, height: 32.0)
         let rect = CGRect(origin: CGPoint.zero, size: size)
         
-        let opaque = true
+        let opaque = false
         let scale: CGFloat = 0.0
         UIGraphicsBeginImageContextWithOptions(size, opaque, scale)
         
         let context = UIGraphicsGetCurrentContext()!
         color.setFill()
-        context.fill(rect)
+        if circle {
+            context.fillEllipse(in: rect)
+        } else {
+            context.fill(rect)
+        }
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -54,11 +58,12 @@ class GameScene: SKScene {
         let point = mapNode.centerOfTile(atColumn: column, row: row)
         let converted = mapNode.convert(point, to: self)
         
-        let action = SKAction.move(to: converted, duration: 0.3)
-        playerNode.run(action)
+        let move = SKAction.move(to: converted, duration: 0.3)
+        
+        playerNode.run(SKAction.group([move, warpAction()]))
     }
     
-    private func createMapExample() {
+    private func createMap() {
         let loadTexture = SKTexture(image: createImage(color: UIColor.lightGray))
         let loadDef = SKTileDefinition(texture: loadTexture)
         let loadGroup = SKTileGroup(tileDefinition: loadDef)
@@ -80,12 +85,32 @@ class GameScene: SKScene {
         mapNode.position = CGPoint(x: frame.midX, y: frame.midY)
         addChild(mapNode)
         
-        playerNode = SKShapeNode(circleOfRadius: loadDef.size.width / 2)
-        playerNode.fillColor = UIColor.black
-        playerNode.strokeColor = UIColor.clear
+        let playerTexture = SKTexture(image: createImage(color: UIColor.black, circle: true))
+        playerNode = SKSpriteNode(texture: playerTexture)
         addChild(playerNode)
         
         move(x: 1, y: 1)
+    }
+    
+    private func warpAction() -> SKAction {
+        let source = [
+            float2(0, 0), float2(0.5, 0), float2(1, 0),
+            float2(0, 0.5), float2(0.5, 0.5), float2(1, 0.5),
+            float2(0, 1), float2(0.5, 1), float2(1, 1)
+        ]
+        let dest = [
+            float2(0.5, 0.5), float2(0.5, 0), float2(0.5, 0.5),
+            float2(0, 0.5), float2(0.5, 0.5), float2(1, 0.5),
+            float2(0.5, 0.5), float2(0.5, 1), float2(0.5, 0.5)
+        ]
+
+        let warpGrid = SKWarpGeometryGrid(columns: 2, rows: 2, sourcePositions: source, destinationPositions: dest)
+        let noWarpGrid = SKWarpGeometryGrid(columns: 2, rows: 2)
+        
+        playerNode.warpGeometry = noWarpGrid
+        let warp = SKAction.animate(withWarps:[warpGrid, noWarpGrid], times: [0.2, 0.4])
+        
+        return warp!
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
