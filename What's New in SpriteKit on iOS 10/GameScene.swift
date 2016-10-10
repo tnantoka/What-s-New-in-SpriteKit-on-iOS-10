@@ -64,17 +64,17 @@ class GameScene: SKScene {
     }
     
     private func createMap() {
-        let loadTexture = SKTexture(image: createImage(color: UIColor.lightGray))
-        let loadDef = SKTileDefinition(texture: loadTexture)
-        let loadGroup = SKTileGroup(tileDefinition: loadDef)
+        let roadTexture = SKTexture(image: createImage(color: UIColor.lightGray))
+        let roadDef = SKTileDefinition(texture: roadTexture)
+        let roadGroup = SKTileGroup(tileDefinition: roadDef)
         
         let wallTexture = noiseTexture()
-        let wallDef = SKTileDefinition(texture: wallTexture, size: loadDef.size)
+        let wallDef = SKTileDefinition(texture: wallTexture, size: roadDef.size)
         let wallGroup = SKTileGroup(tileDefinition: wallDef)
         
-        let tileSet = SKTileSet(tileGroups: [loadGroup, wallGroup])
+        let tileSet = SKTileSet(tileGroups: [roadGroup, wallGroup])
         
-        mapNode = SKTileMapNode(tileSet: tileSet, columns: 7, rows: 7, tileSize: loadDef.size, fillWith: loadGroup)
+        mapNode = SKTileMapNode(tileSet: tileSet, columns: 7, rows: 7, tileSize: roadDef.size, fillWith: roadGroup)
         [0, mapNode.numberOfColumns - 1].forEach { i in
             (0..<mapNode.numberOfRows).forEach { j in
                 mapNode.setTileGroup(wallGroup, forColumn: i, row: j)
